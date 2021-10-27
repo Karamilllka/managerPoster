@@ -1,14 +1,19 @@
 package ru.netology;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@Data
-@AllArgsConstructor
 public class ManagerPoster {
+    public Movie[] getMovies() {
+        return movies;
+    }
+
     private Movie[] movies = new Movie[0];
+
+    public int getLimit() {
+        return limit;
+    }
+
     private int limit = 10;
 
     public ManagerPoster(int limit) {
