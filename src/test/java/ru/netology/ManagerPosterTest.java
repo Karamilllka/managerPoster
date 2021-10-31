@@ -18,7 +18,7 @@ class ManagerPosterTest {
     private Movie tenth = new Movie(10, "link", "10", "1");
     private Movie eleventh = new Movie(11, "link", "11", "3");
 
-// тесты на добавление фильмов
+    // тесты на добавление фильмов
     @Test
     public void shouldAddMovies() {
         ManagerPoster manager = new ManagerPoster();
@@ -32,25 +32,26 @@ class ManagerPosterTest {
         manager.add(eighth);
         manager.add(ninth);
         manager.add(tenth);
-        int actual = manager.getMovies().length;
-        int expected = 10;
-        assertEquals(expected, actual);
+        Movie[] actual = manager.getMovies();
+        Movie[] expected = new Movie[]{first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth};
+        assertArrayEquals(expected, actual);
     }
+
     @Test
     public void shouldAddOneMovie() {
         ManagerPoster manager = new ManagerPoster();
         manager.add(first);
-        int actual = manager.getMovies().length;
-        int expected = 1;
-        assertEquals(expected, actual);
+        Movie[] actual = manager.getMovies();
+        Movie[] expected = new Movie[]{first};
+        assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldAddNoMovie() {
         ManagerPoster manager = new ManagerPoster();
-        int actual = manager.getMovies().length;
-        int expected = 0;
-        assertEquals(expected, actual);
+        Movie[] actual = manager.getMovies();
+        Movie[] expected = new Movie[]{};
+        assertArrayEquals(expected, actual);
     }
 
     //тесты на вывод списка фильмов
@@ -72,6 +73,7 @@ class ManagerPosterTest {
         Movie[] expected = new Movie[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
     }
+
     @Test
     public void shouldShowLastFilmsMoreLimit() {
         ManagerPoster manager = new ManagerPoster();
@@ -92,7 +94,7 @@ class ManagerPosterTest {
     }
 
     @Test
-    public void shouldShowLastFilmsMoreLimit2() {
+    public void shouldShowLastFilmsMoreSetLimit() {
         ManagerPoster manager = new ManagerPoster(8);
         manager.add(first);
         manager.add(second);
@@ -102,8 +104,29 @@ class ManagerPosterTest {
         manager.add(sixth);
         manager.add(seventh);
         manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
         Movie[] actual = manager.showLastFilms();
-        Movie[] expected = new Movie[]{eighth, seventh, sixth, fifth, fourth, third, second, first};
+        Movie[] expected = new Movie[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldShowLastFilmsSetLimit() {
+        ManagerPoster manager = new ManagerPoster(11);
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleventh);
+        Movie[] actual = manager.showLastFilms();
+        Movie[] expected = new Movie[]{eleventh, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
         assertArrayEquals(expected, actual);
     }
 }

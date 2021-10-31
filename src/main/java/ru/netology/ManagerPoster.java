@@ -4,17 +4,17 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class ManagerPoster {
+
+    private Movie[] movies = new Movie[0];
+    private int limit = 10;
+
     public Movie[] getMovies() {
         return movies;
     }
 
-    private Movie[] movies = new Movie[0];
-
     public int getLimit() {
         return limit;
     }
-
-    private int limit = 10;
 
     public ManagerPoster(int limit) {
         this.limit = limit;
@@ -33,7 +33,7 @@ public class ManagerPoster {
 
     public Movie[] showLastFilms() {
         int resultLength;
-        if (getLimit() < 10) {
+        if (getLimit() != 10) {
             resultLength = getLimit();
         } else {
             resultLength = 10;
