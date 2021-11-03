@@ -33,10 +33,10 @@ public class ManagerPoster {
 
     public Movie[] showLastFilms() {
         int resultLength;
-        if (getLimit() != 10) {
-            resultLength = getLimit();
+        if (getLimit() > movies.length) {
+            resultLength = movies.length;
         } else {
-            resultLength = 10;
+            resultLength = getLimit();
         }
         Movie[] result = new Movie[resultLength];
         for (int i = 0; i < result.length; i++) {
